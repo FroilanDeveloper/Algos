@@ -28,20 +28,21 @@ Follow up: Could you solve it without converting the integer to a string?*/
 
 // This is JavaScript without converting the integer to a string
 
-// var isPalindrome = function(x) {
-//   var reverse = 0; // set to zero
-//   var copy = x; // copy the input eg. 1141
+var isPalindrome = function(x) {
+  var reverse = 0; // set to zero
+  var copy = x; // copy the input eg. 1141
 
-//   while (copy > 0) { // while our copy is positive (negative numbers cannot be palindromes)
-//     const digit = copy % 10; //  i=1 ==> 1141 % 10 = 1 |i=2 ==> 114 % 10 = 4 | i=3 ==> 11 % 10 = 1| i=4  ==> 1 % 10 = 1
-//     reverse = reverse * 10 + digit; //  i=1 ==> 0 * 10 + 1 =1| i=2 ==> 1 * 10 + 4 = 14| i=3 ==> 14 * 10 + 1 = 141 | i=4 ==> 141 * 10 + 1 = 1411
-//     copy = ~~(copy / 10); //Math.floor(copy / 10) |/|/ i=1 ==>  1141 / 10 (rounded down) = 114 |i=2  ==> 114/10 = 11| i=3 ==> 11/10  = 1| i=4 ==> 1/10 = 0 - break while loop
-//   }
+  while (copy > 0) { // while our copy is positive (negative numbers cannot be palindromes)
+    const digit = copy % 10; //  i=1 ==> 1141 % 10 = 1 |i=2 ==> 114 % 10 = 4 | i=3 ==> 11 % 10 = 1| i=4  ==> 1 % 10 = 1
+    reverse = reverse * 10 + digit; //  i=1 ==> 0 * 10 + 1 =1| i=2 ==> 1 * 10 + 4 = 14| i=3 ==> 14 * 10 + 1 = 141 | i=4 ==> 141 * 10 + 1 = 1411
+    copy = ~~(copy / 10); //Math.floor(copy / 10) |/|/ i=1 ==>  1141 / 10 (rounded down) = 114 |i=2  ==> 114/10 = 11| i=3 ==> 11/10  = 1| i=4 ==> 1/10 = 0 - break while loop
+  }
 
-//   return reverse == x; // is 1411 == 1141? ==> false
-// };
+  return reverse == x; // is 1411 == 1141? ==> false
+};
 
-// console.log(isPalindrome(121));
+console.log(isPalindrome(1141));
+console.log(isPalindrome(121));
 
 // solve in 1 line
 // var isPalindrome = function(x) {
@@ -118,15 +119,17 @@ return true;
 
 // Lastly, we compare the first half i.e. x with the reversed numbers i.e rev; if x is originally an odd num, we ignore the middle number, as it'll always equal itself in a palindrome.
 
-if (x < 0 || (x % 10 == 0 && x != 0)) {
+if (x < 0 || (x % 10 == 0 && x != 0)) { // If x is less than 0 OR x modulus 10 is 0 AND x is not equal to 0 then return false
   return false;
 }
 
-let rev = 0;
+let rev = 0; // were declaring rev and giving it a value of 0 
 
-while (x > rev) {
-  rev = rev * 10 + (x % 10);
-  x = Math.floor(x / 10);
+while (x > rev) { // while x is greater than 0  
+  rev = rev * 10 + (x % 10); // rev = rev times 10 plus x modulus 10;
+  x = Math.floor(x / 10); // x =  rounds down and returns the largest integer less than or equal to a given number x divides by 10
 }
 
-return x === rev || x == Math.floor(rev / 10);
+return x === rev || x == Math.floor(rev / 10); // return x triple equals of rev OR x double equal Math.floor rev divides by 10 
+
+
